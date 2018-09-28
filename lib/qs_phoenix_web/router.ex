@@ -6,6 +6,10 @@ defmodule QSPhoenixWeb.Router do
   end
 
   scope "/api", QSPhoenixWeb do
-    pipe_through :api
+    scope "/v1" do
+      pipe_through :api
+
+      resources("/foods", FoodController, except: [:new, :edit])
+    end
   end
 end
